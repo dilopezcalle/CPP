@@ -1,12 +1,12 @@
-NAME			=	megaphone
-SRC_DIR			=	src
+NAME			=	program
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
-CC				=	clang++
-CFLAGS			=	-Wall -Werror -Wextra -g3
+CC				=	c++
+CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98
 
-SRCS			=	megaphone.cpp	\
+SRCS			=	tests.cpp		\
+					Account.cpp		\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -20,7 +20,9 @@ RESET			=	"\\x1b[37m"
 
 $(NAME):	$(PREFIXED)
 	@printf \
-	"$(YELLOW)-------------- Project's files compiled --------------\n$(RESET)%-33.33s\r"
+	"                                                                       \n%-33.33s\r"
+	@printf \
+	"$(YELLOW)-------------- Project's files compiled --------------\n\n$(RESET)%-33.33s\r"
 	@$(CC) $(CFLAGS) $(PREFIXED) -o $(NAME)
 
 $(OBJ_DIR)/%.o:	%.cpp
@@ -34,10 +36,10 @@ all:	$(NAME)
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_DIR)
-	@echo "${GREEN}---------------------- Cleaned! ----------------------${RESET}"
+	@echo "\n${GREEN}---------------------- Cleaned! ----------------------\n${RESET}"
 
 fclean:	clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(NAME).dSYM
 
 re:		fclean all
 

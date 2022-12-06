@@ -1,3 +1,6 @@
+#include <sstream>
+#include <iomanip>
+
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -12,7 +15,7 @@ PhoneBook::~PhoneBook()
 	return ;
 }
 
-int	PhoneBook::getNumContacts(void)
+int	PhoneBook::getNumContacts(void) const
 {
 	return (this->_numContacts);
 }
@@ -29,21 +32,26 @@ int	PhoneBook::addContact(Contact contact)
 
 int	PhoneBook::showContacts(void)
 {
+	std::cout << "*" << std::setw(44) << std::setfill('-') << "*" << std::endl;
+	std::cout << "|  INDEX   |  NOMBRE  | APELLIDO |   APODO  |" << std::endl;
+	std::cout << "|" << std::setw(44) << std::setfill('-') << "|" << std::endl;
 	for (int i = 0; i < this->_numContacts; i++)
-		this->_contactList[i].showContact();
+		this->_contactList[i].showTableContact();
+	std::cout << "*" << std::setw(44) << std::setfill('-') << "*" << std::endl;
+	std::cout << std::endl;
 	return (0);
 }
 
 int	PhoneBook::showContactByIndex(std::string str_index)
 {
-	int	i;
-	int	index;
+	size_t	i;
+	size_t	index;
 
 	for (i = 0; std::isdigit((char)str_index[i]) != 0; i++);	
 	if (i != str_index.length())
 		return (1);
-	index = std::stoi(str_index);
-	if (index >= this->_numContacts)
+	std::istringstream(str_index) >> index;
+	if (index >= (size_t)this->_numContacts)
 		return (1);
 	for (i = 0; i != index; i++);
 	this->_contactList[i].showContact();

@@ -24,11 +24,9 @@ Contact::~Contact(void)
 	return ;
 }
 
-int	Contact::showContact(void)
+int	Contact::showTableContact(void) const
 {
-	std::cout << "*" << std::setw(44) << std::setfill('-') << "*" << std::endl;
-	std::cout << "|  INDEX   |  NOMBRE  | APELLIDO |   APODO  |" << std::endl;
-	std::cout << "|" << std::setw(44) << std::setfill('-') << "|" << std::endl;
+	
 	std::cout << "|" << std::setw(10) << std::setfill(' ') << this->_index;
 	if (this->_firstName.length() > 10)
 		std::cout << "|" << this->_firstName.substr(0, 9) << ".";
@@ -42,11 +40,21 @@ int	Contact::showContact(void)
 		std::cout << "|" << this->_nickName.substr(0, 9) << ".|" <<  std::endl;
 	else
 		std::cout << "|" << std::setw(10) << std::setfill(' ') << this->_nickName << "|" << std::endl;
-	std::cout << "*" << std::setw(44) << std::setfill('-') << "*" << std::endl;
 	return (0);
 }
 
-int	Contact::getIndex(void)
+int	Contact::showContact(void) const
+{
+	std::cout << "Index:\t\t" << this->_index << std::endl;
+	std::cout << "Nombre:\t\t" << this->_firstName << std::endl;
+	std::cout << "Apellido:\t" << this->_lastName << std::endl;
+	std::cout << "Apodo:\t\t" << this->_nickName << std::endl;
+	std::cout << "Teléfono:\t" << this->_phoneNumber << std::endl;
+	std::cout << "Secreto:\t" << this->_index << std::endl;
+	return (0);
+}
+
+int	Contact::getIndex(void) const
 {
 	return (this->_index);
 }

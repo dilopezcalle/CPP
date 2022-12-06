@@ -1,5 +1,5 @@
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 #include <iostream>
 
@@ -15,8 +15,7 @@ public:
 	~PhoneBook(void);
 
 	// ===== Getters =====
-	Contact	*getContactList(void) const;
-	int		getNumContacts(void);
+	int		getNumContacts(void) const;
 
 	// ===== Methods =====
 	int	addContact(Contact contact);

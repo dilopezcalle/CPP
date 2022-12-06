@@ -4,6 +4,7 @@
 #define RESET "\033[0;0m"
 
 #include <iostream>
+#include <sstream>
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
@@ -36,6 +37,8 @@ int	main(void)
 			phone_book.addContact(get_contact_data());
 		else if (command.compare("SEARCH") == 0)
 		{
+			phone_book.showContacts();
+			command.clear();
 			std::cout << "Index del contacto >> ";
 			std::getline(std::cin, command);
 			std::cout << std::endl;
@@ -60,8 +63,9 @@ static std::string	str_to_upper(std::string str)
 
 static Contact	get_contact_data(void)
 {
-	int i;
-	Contact contact;
+	size_t		i;
+	int			phone;
+	Contact 	contact;
 	std::string	first_name;
 	std::string	last_name;
 	std::string	nick_name;
@@ -91,5 +95,6 @@ static Contact	get_contact_data(void)
 		std::cout << RED << "Alguno de los datos NO es válido" << RESET << std::endl;
 		return (contact);
 	}
-	return (Contact(first_name, last_name, nick_name, std::stoi(phone_number), darkest_secret));
+	std::istringstream(phone_number) >> phone;
+	return (Contact(first_name, last_name, nick_name, phone, darkest_secret));
 }

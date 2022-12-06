@@ -1,5 +1,5 @@
-#ifndef CONTACT_H
-# define CONTACT_H
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 # include <iostream>
 
@@ -15,13 +15,14 @@ public:
 	~Contact(void);
 
 	// ===== Getters =====
-	int	getIndex(void);
+	int	getIndex(void) const;
 
 	// ===== Setters =====
 	int	setIndex(int index);
 
 	// ===== Methods =====
-	int	showContact(void);
+	int	showTableContact(void) const;
+	int	showContact(void) const;
 
 private:
 	// ===== Variables =====
