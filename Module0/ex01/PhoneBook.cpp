@@ -7,6 +7,7 @@
 PhoneBook::PhoneBook()
 {
 	this->_numContacts = 0;
+	this->_olderContact = 0;
 	return ;
 }
 
@@ -24,9 +25,21 @@ int	PhoneBook::addContact(Contact contact)
 {
 	if (contact.getIndex() == -1)
 		return (0);
-	contact.setIndex(this->_numContacts);
-	this->_contactList[this->_numContacts] = contact;
-	this->_numContacts++;
+	if (this->_numContacts > 7)
+	{
+		contact.setIndex(this->_olderContact);
+		this->_contactList[this->_olderContact] = contact;
+		if (this->_olderContact < 7)
+			this->_olderContact++;
+		else
+			this->_olderContact = 0;
+	}
+	else
+	{
+		contact.setIndex(this->_numContacts);
+		this->_contactList[this->_numContacts] = contact;
+		this->_numContacts++;
+	}
 	return (0);
 }
 

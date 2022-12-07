@@ -21,8 +21,7 @@ int	main(void)
 	{
 		// Print welcome message
 		std::cout << GREEN << "\nIntroduce un comando válido:\n" << RESET << std::endl;
-		if (phone_book.getNumContacts() < 8)
-			std::cout << "- " << YELLOW << "ADD\t\t" << RESET << "(Agregar contacto a la agenda)" << std::endl;
+		std::cout << "- " << YELLOW << "ADD\t\t" << RESET << "(Agregar contacto a la agenda)" << std::endl;
 		std::cout << "- " << YELLOW << "SEARCH\t" << RESET << "(Buscar un contacto de la agenda)" << std::endl;
 		std::cout << "- " << YELLOW << "EXIT" << RESET << "\t\t(Salir del programa)" << std::endl;
 		std::cout << std::endl << ">> ";
@@ -33,7 +32,7 @@ int	main(void)
 		command = str_to_upper(command);
 
 		// Check user's input
-		if (command.compare("ADD") == 0 && phone_book.getNumContacts() < 8)
+		if (command.compare("ADD") == 0)
 			phone_book.addContact(get_contact_data());
 		else if (command.compare("SEARCH") == 0)
 		{

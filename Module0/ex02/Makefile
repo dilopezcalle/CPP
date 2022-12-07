@@ -3,7 +3,7 @@ OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	c++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98
 
 SRCS			=	tests.cpp		\
 					Account.cpp		\

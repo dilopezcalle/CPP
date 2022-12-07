@@ -25,6 +25,7 @@ public:
 private:
 	// ===== Variables =====
 	int		_numContacts;
+	int		_olderContact;
 	Contact	_contactList[8];	// Max contacts: 8
 };
 

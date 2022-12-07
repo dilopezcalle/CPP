@@ -50,7 +50,7 @@ int	Contact::showContact(void) const
 	std::cout << "Apellido:\t" << this->_lastName << std::endl;
 	std::cout << "Apodo:\t\t" << this->_nickName << std::endl;
 	std::cout << "Teléfono:\t" << this->_phoneNumber << std::endl;
-	std::cout << "Secreto:\t" << this->_index << std::endl;
+	std::cout << "Secreto:\t" << this->_darkestSecret << std::endl;
 	return (0);
 }
 
