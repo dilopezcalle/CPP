@@ -13,16 +13,17 @@ Zombie	*newZombie(std::string name);
 int	main(void)
 {
 	// Test in STACK with randomChump
-	std::cout << YELLOW << "\nSe crea un Zombie en el Stack:\n" << RESET << std::endl;
+	std::cout << YELLOW << "\nSe crea un Zombie en el STACK:\n" << RESET << std::endl;
 	randomChump("Paco");
 
 	// Test in HEAP with newZombie
 	Zombie	*zombie;
-	std::cout << YELLOW << "\nSe crea un Zombie en el Heap:\n" << RESET << std::endl;
+	std::cout << YELLOW << "\nSe crea un Zombie en el HEAP:\n" << RESET << std::endl;
 	zombie = newZombie("Lupita");
 	zombie->announce();
 
-	// Without this line, Lupita will 
+	// Without this line, Lupita will not be destroyed
 	delete zombie;
+
 	return (0);
 }

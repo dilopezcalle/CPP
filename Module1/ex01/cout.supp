@@ -1,0 +1,8 @@
+{
+	std_cout_leaks
+	Memcheck:Leak
+	fun:malloc
+	...
+	fun:fwrite
+	...
+}
