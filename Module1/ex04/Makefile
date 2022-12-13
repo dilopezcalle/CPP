@@ -6,9 +6,6 @@ CC				=	c++
 CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98
 
 SRCS			=	main.cpp		\
-					Weapon.cpp		\
-					HumanA.cpp		\
-					HumanB.cpp		\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))

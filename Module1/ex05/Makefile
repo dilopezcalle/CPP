@@ -1,4 +1,4 @@
-NAME			=	program
+NAME			=	harl
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
@@ -6,9 +6,7 @@ CC				=	c++
 CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98
 
 SRCS			=	main.cpp		\
-					Weapon.cpp		\
-					HumanA.cpp		\
-					HumanB.cpp		\
+					Harl.cpp		\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -46,6 +44,6 @@ fclean:	clean
 re:		fclean all
 
 valgrind : clean all 
-	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME) test
 
 .PHONY: all clean fclean re valgrind

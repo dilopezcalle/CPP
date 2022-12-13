@@ -1,3 +1,6 @@
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
+
 #include <iostream>
 
 class Weapon
@@ -5,6 +8,7 @@ class Weapon
 public:
 	// ===== Contructor =====
 	Weapon();
+	Weapon(std::string type);
 
 	// ===== Destructor =====
 	~Weapon();
@@ -15,8 +19,9 @@ public:
 	// ===== Setter =====
 	void	setType(std::string type);
 
-
 private:
 	// ===== Variables =====
 	std::string	_type;
 };
+
+#endif
