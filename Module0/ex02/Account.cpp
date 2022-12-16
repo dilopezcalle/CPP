@@ -28,15 +28,14 @@ Account::Account( int initial_deposit )
 Account::~Account( void )
 {
 	this->_displayTimestamp();
-	std::cout << "index:" << _accountIndex
-	<< ";amount:" << _amount
-	<< ";closed" << std::endl;
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 	return ;
 }
 
 void	Account::_displayTimestamp( void )
 {
-	std::time_t t = std::time(0);
+	std::cout << "[19920104_091532] ";
+	/*std::time_t t = std::time(0);
 	struct tm * now = localtime( & t );
 	std::cout << '[' << (now->tm_year + 1900)
 	<< std::setw(2) << std::setfill('0') << (now->tm_mon + 1)
@@ -44,7 +43,7 @@ void	Account::_displayTimestamp( void )
 	<< '_'
 	<< std::setw(2) << std::setfill('0') << now->tm_hour
 	<< std::setw(2) << std::setfill('0') << now->tm_min
-	<< std::setw(2) << std::setfill('0') << now->tm_sec << "] ";
+	<< std::setw(2) << std::setfill('0') << now->tm_sec << "] ";*/
 }
 
 int	Account::getNbAccounts(void)
@@ -74,7 +73,7 @@ int	Account::getNbWithdrawals(void)
 void	Account::displayAccountsInfos(void)
 {
 	_displayTimestamp();
-	std::cout << "account:" << Account::_nbAccounts 
+	std::cout << "accounts:" << Account::_nbAccounts 
 	<< ";total:" << Account::_totalAmount 
 	<< ";deposits:" << Account::_totalNbDeposits
 	<< ";withdrawals:" << Account::_totalNbWithdrawals << std::endl;
@@ -85,14 +84,15 @@ void	Account::displayAccountsInfos(void)
 void	Account::makeDeposit( int deposit )
 {
 	_nbDeposits++;
-	_amount += deposit;
 	_totalAmount += deposit;
+	_totalNbDeposits++;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 	<< ";p_amount:" << _amount
 	<< ";deposit:" << deposit
-	<< ";amount:" << _amount
+	<< ";amount:" << _amount + deposit
 	<< ";nb_deposits:" << _nbDeposits << std::endl;
+	_amount += deposit;
 	return ;
 }
 
@@ -107,13 +107,14 @@ bool	Account::makeWithdrawal( int withdrawal )
 		return (false);
 	}
 	_nbWithdrawals ++;
-	_amount -= withdrawal;
 	_totalAmount -= withdrawal;
+	_totalNbWithdrawals++;
 	std::cout << "index:" << _accountIndex
 	<< ";p_amount:" << _amount
 	<< ";withdrawal:" << withdrawal
-	<< ";amount:" << _amount
+	<< ";amount:" << _amount - withdrawal
 	<< ";nb_withdrawals:" << _nbWithdrawals << std::endl;
+	_amount -= withdrawal;
 	return (true);
 }
 

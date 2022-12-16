@@ -42,4 +42,7 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY: all clean fclean re bonus print_init
+valgrind : clean all 
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
+
+.PHONY: all clean fclean re valgrind
