@@ -29,7 +29,6 @@ Fixed::Fixed(const Fixed &src)
 // ===== Destructor =====
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 	return ;
 }
 
@@ -96,42 +95,36 @@ const Fixed	&Fixed::max(const Fixed &src1, const Fixed &src2)
 
 Fixed	&Fixed::operator=(const Fixed &src)
 {
-	std::cout << "Equal operator called" << std::endl;
 	this->_rawBits = src.getRawBits();
 	return (*this);
 }
 
 Fixed	Fixed::operator+(const Fixed &src)
 {
-	std::cout << "Addition operator called" << std::endl;
 	Fixed result(this->toFloat() + src.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator-(const Fixed &src)
 {
-	std::cout << "Subtraction operator called" << std::endl;
 	Fixed result(this->toFloat() - src.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator*(const Fixed &src)
 {
-	std::cout << "Multiplication operator called" << std::endl;
 	Fixed result(this->toFloat() * src.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed &src)
 {
-	std::cout << "Division operator called" << std::endl;
 	Fixed result(this->toFloat() / src.toFloat());
 	return (result);
 }
 
 Fixed	&Fixed::operator++(void)
 {
-	std::cout << "Addition +1 before operator called" << std::endl;
 	this->setRawBits(this->toFloat() + 1);
 	return (*this);
 }
@@ -140,7 +133,6 @@ Fixed	Fixed::operator++(int)
 {
 	Fixed	old(*this);
 
-	std::cout << "Addition +1 after operator called" << std::endl;
 	this->setRawBits(this->toFloat() + 1);
 	return (old);
 }
@@ -155,7 +147,6 @@ Fixed	Fixed::operator--(int)
 {
 	Fixed	old(*this);
 
-	std::cout << "Addition +1 after operator called" << std::endl;
 	this->setRawBits(this->toFloat() - 1);
 	return (old);
 }
