@@ -1,4 +1,4 @@
-#define RED "\033[0;31m"
+#define RED "\033[0;31m"A
 #define GREEN "\033[1;32m"
 #define YELLOW "\033[0;33m"
 #define RESET "\033[0;0m"
