@@ -1,5 +1,5 @@
 #define RED "\033[0;31m"
-#define GREEN "\033[1;32m"
+#define GREEN "\033[0;32m"
 #define YELLOW "\033[0;33m"
 #define RESET "\033[0;0m"
 
@@ -18,7 +18,7 @@ int main( void )
 	Point	a(Fixed(1), Fixed(1));
 	Point	b(Fixed(10), Fixed(1));
 	Point	c(Fixed(1), Fixed(10));
-	Point	point(Fixed(9.2f), Fixed(2));
+	Point	point(Fixed(9), Fixed(2));
 
 	std::cout << YELLOW << "\nVértices del triangulo:\n" << RESET << std::endl;
 	std::cout << "Vértice A ( " << a.getX() << " , " << a.getY() << " )" << std::endl;
@@ -26,9 +26,9 @@ int main( void )
 	std::cout << "Vértice C ( " << c.getX() << " , " << c.getY() << " )" << std::endl;
 	std::cout << YELLOW << "\nPunto a analizar: " << RESET << "( " << point.getX() << " , " << point.getY() << " )" << std::endl;
 	if (bsp(a, b, c, point))
-		std::cout << "Está dentro" << std::endl;
+		std::cout << GREEN << "\nEstá dentro\n" << RESET << std::endl;
 	else
-		std::cout << "Está fuera" << std::endl;
+		std::cout << RED << "\nEstá fuera\n" << RESET << std::endl;
 	return 0;
 }
 
