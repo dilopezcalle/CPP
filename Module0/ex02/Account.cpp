@@ -34,8 +34,7 @@ Account::~Account( void )
 
 void	Account::_displayTimestamp( void )
 {
-	std::cout << "[19920104_091532] ";
-	/*std::time_t t = std::time(0);
+	std::time_t t = std::time(0);
 	struct tm * now = localtime( & t );
 	std::cout << '[' << (now->tm_year + 1900)
 	<< std::setw(2) << std::setfill('0') << (now->tm_mon + 1)
@@ -43,7 +42,7 @@ void	Account::_displayTimestamp( void )
 	<< '_'
 	<< std::setw(2) << std::setfill('0') << now->tm_hour
 	<< std::setw(2) << std::setfill('0') << now->tm_min
-	<< std::setw(2) << std::setfill('0') << now->tm_sec << "] ";*/
+	<< std::setw(2) << std::setfill('0') << now->tm_sec << "] ";
 }
 
 int	Account::getNbAccounts(void)
