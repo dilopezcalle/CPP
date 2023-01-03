@@ -6,6 +6,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
@@ -22,6 +23,10 @@ int	main(void)
 	FragTrap 	lupita;
 	lupita = FragTrap("lupita");
 
+	std::cout << YELLOW << "\nSe crea un DiamondTrap diego\n" << RESET << std::endl;
+	DiamondTrap 	diego;
+	diego = DiamondTrap("diego");
+
 	// Display status
 	std::cout << YELLOW << "\nStatus\n" << RESET << std::endl;
 	paco.displayStatus();
@@ -29,6 +34,11 @@ int	main(void)
 	pepito.displayStatus();
 	std::cout << std::endl;
 	lupita.displayStatus();
+	std::cout << std::endl;
+	diego.displayStatus();
+	std::cout << GREEN;
+	diego.whoAmI();
+	std::cout << RESET;
 	
 	// ===== paco attack =====
 	std::cout << YELLOW << "\nPruebas de " << paco.getName() << ":\n" << RESET << std::endl;
@@ -93,6 +103,33 @@ int	main(void)
 	// paco and pepito can't request high fives because they're not a FragTrap
 	// paco.highFivesGuys();
 	// pepito.highFivesGuys();
+
+	// pepito Gate keeper mode
+	std::cout << YELLOW << "\nPruebas del ScavTrap "
+	<< pepito.getName() << "\n" << RESET << std::endl;
+	pepito.guardGate();
+
+	// diego tests
+	std::cout << YELLOW << "\nPruebas de " << diego.getName() << ":\n" << RESET << std::endl;
+
+	std::cout << "Los puntos de energia de " << diego.getName() << " son de "
+	<< diego.getEnergyPoints() << " puntos" << std::endl;
+
+	diego.attack("juanito");
+	diego.takeDamage(6);
+
+	std::cout << "Los puntos de energia de " << diego.getName() << " son de "
+	<< diego.getEnergyPoints() << " puntos" << std::endl;
+
+	diego.beRepaired(4);
+
+	std::cout << "Los puntos de energia de " << diego.getName() << " son de "
+	<< diego.getEnergyPoints() << " puntos" << std::endl;
+
+	std::cout << GREEN;
+	diego.highFivesGuys();
+	diego.guardGate();
+	std::cout << RESET;
 
 	std::cout << YELLOW << "\nAcaba el programa\n" << RESET << std::endl;
 	return (0);

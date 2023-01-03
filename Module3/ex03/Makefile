@@ -3,12 +3,13 @@ OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	clang++
-CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 SRCS			=	main.cpp		\
 					ClapTrap.cpp	\
 					ScavTrap.cpp	\
 					FragTrap.cpp	\
+					DiamondTrap.cpp	\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))

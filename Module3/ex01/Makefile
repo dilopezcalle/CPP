@@ -2,8 +2,8 @@ NAME			=	a.out
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
-CC				=	c++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98
+CC				=	clang++
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98
 
 SRCS			=	main.cpp		\
 					ClapTrap.cpp	\
