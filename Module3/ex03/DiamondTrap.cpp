@@ -6,7 +6,7 @@ DiamondTrap::DiamondTrap()
 	this->_name = "NULL";
 	ClapTrap::setName("NULL_clap_trap");
 	this->setHitPoints(FragTrap::getHitPoints());
-	this->setEnergyPoints(ScavTrap::getEnergyPoints());
+	this->setEnergyPoints(50);
 	this->setAttackDamage(FragTrap::getAttackDamage());
 	std::cout << "DiamondTrap " << this->_name
 	<< " default constructor called" << std::endl;
@@ -26,7 +26,7 @@ DiamondTrap::DiamondTrap(std::string name)
 	this->_name = name;
 	ClapTrap::setName(name + "_clap_trap");
 	this->setHitPoints(FragTrap::getHitPoints());
-	this->setEnergyPoints(ScavTrap::getEnergyPoints());
+	this->setEnergyPoints(50);
 	this->setAttackDamage(FragTrap::getAttackDamage());
 	std::cout << "DiamondTrap " << this->_name 
 	<< " constructor called" << std::endl;
