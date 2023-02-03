@@ -1,4 +1,4 @@
-NAME			=	farm
+NAME			=	a.out
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
@@ -11,6 +11,7 @@ SRCS			=	main.cpp		\
 					Cat.cpp			\
 					WrongAnimal.cpp	\
 					WrongCat.cpp	\
+					Brain.cpp	\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))

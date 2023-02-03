@@ -1,16 +1,12 @@
-NAME			=	farm
+NAME			=	a.out
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	clang++
-CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 SRCS			=	main.cpp		\
-					Animal.cpp		\
-					Dog.cpp			\
-					Cat.cpp			\
-					WrongAnimal.cpp	\
-					WrongCat.cpp	\
+					Character.cpp	\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))

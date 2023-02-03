@@ -13,16 +13,58 @@
 
 int	main(void)
 {
-	const WrongAnimal* meta = new WrongAnimal();
-	const Animal* j = new Dog();
-	const WrongAnimal* i = new WrongCat();
+	// Creating Animals
+	std::cout << YELLOW << "\nSe crea un animal" << RESET << std::endl;
+	const Animal *animal = new Animal();
+	std::cout << YELLOW << "\nSe crea un perro" << RESET << std::endl;
+	const Animal *dog = new Dog();
+	std::cout << YELLOW << "\nSe crea un gato" << RESET << std::endl;
+	const Animal *cat = new Cat();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+	// Print animal type
+	std::cout << YELLOW << "\nTipo del animal" << RESET << std::endl;
+	std::cout << GREEN << "Perro: " << RESET
+	<< dog->getType() << " " << std::endl;
+	std::cout << GREEN << "Gato: " << RESET
+	<< cat->getType() << " " << std::endl;
 
-	std::cout << YELLOW << "\nAcaba el programa\n" << RESET << std::endl;
+	// Print sounds
+	std::cout << YELLOW << "\nSonido del animal" << RESET << std::endl;
+	std::cout << GREEN << "Perro: " << RESET;
+	dog->makeSound();
+	std::cout << GREEN << "Gato: " << RESET;
+	cat->makeSound();
+	std::cout << GREEN << "Animal: " << RESET;
+	animal->makeSound();
+
+	// Free animals
+	std::cout << YELLOW << "\nSe liberan los animales" << RESET << std::endl;
+	delete animal;
+	delete dog;
+	delete cat;
+
+	// ===== Wrong animals =====
+	std::cout << RED << "\n===== Casos erróneos =====" << RESET << std::endl;
+
+	// Create wrong animals
+	std::cout << YELLOW << "\nSe crea un animal erróneo" << RESET << std::endl;
+	const WrongAnimal* wrong_animal = new WrongAnimal();
+	std::cout << YELLOW << "\nSe crea un gato erróneo" << RESET << std::endl;
+	const WrongAnimal* wrong_cat = new WrongCat();
+
+	std::cout << GREEN << "\nTipo del gato erróneo: " << RESET
+	<< wrong_cat->getType() << " " << std::endl;
+	
+	std::cout << YELLOW << "\nSonido del animal erróneo" << RESET << std::endl;
+	std::cout << GREEN << "Gato: " << RESET;
+	wrong_cat->makeSound();
+	std::cout << GREEN << "Animal: " << RESET;
+	wrong_animal->makeSound();
+
+	// Free wrong animals
+	std::cout << YELLOW << "\nSe liberan los animales erróneos" << RESET << std::endl;
+	delete wrong_animal;
+	delete wrong_cat;
+
 	return (0);
 }
