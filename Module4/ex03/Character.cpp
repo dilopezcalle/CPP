@@ -30,6 +30,19 @@ Character::~Character()
 // ===== Operators =====
 Character	&Character::operator=(const Character &src)
 {
+	AMateria	**slot = src.getSlot();
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (slot[i])
+			this->_slot[i] = slot[i];
+		else
+			this->_slot[i] = NULL;
+	}
+
+	this->_name = src.getName();
+
+	// delete []slot;
 	return (*this);
 }
 
@@ -37,6 +50,16 @@ Character	&Character::operator=(const Character &src)
 std::string const &Character::getName() const
 {
 	return (this->_name);
+}
+
+AMateria	**Character::getSlot(void) const
+{
+	AMateria	**slot = NULL;
+
+	for (int i = 0; i < 4; i++)
+		slot[i] = this->_slot[i]->clone();
+	
+	return (slot);
 }
 
 // ===== Methods =====
@@ -58,17 +81,18 @@ void Character::unequip(int idx)
 	if (this->_slot[idx])
 		return ;
 
-	delete this->_slot[idx]; // FORBIDDEN
+	// delete this->_slot[idx]; // FORBIDDEN
 	this->_slot[idx] = NULL;
 }
 void Character::use(int idx, ICharacter& target)
 {
 	if (idx > 3)
 		return ;
-	if (this->_slot[idx])
+	if (!this->_slot[idx])
 		return ;
 
 	this->_slot[idx]->use(target);
+	delete this->_slot[idx];
 	this->_slot[idx] = NULL;
 }
 

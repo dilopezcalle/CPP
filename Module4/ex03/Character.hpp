@@ -19,6 +19,7 @@ public:
 
 	// ===== Getters =====
 	virtual std::string const &getName() const;
+	AMateria	**getSlot(void) const;
 
 	// ===== Methods =====
 	virtual void equip(AMateria* m);

@@ -3,7 +3,9 @@
 
 # include <iostream>
 
-# include "Character.hpp"
+# include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {

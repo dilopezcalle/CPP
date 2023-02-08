@@ -32,4 +32,9 @@ AMateria* Cure::clone() const
 	AMateria	*newMateria = new Cure(*this);
 	return (newMateria);
 }
-// virtual void use(ICharacter& target);
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	return ;
+}

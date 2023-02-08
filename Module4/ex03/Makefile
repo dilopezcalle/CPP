@@ -2,11 +2,15 @@ NAME			=	a.out
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
-CC				=	clang++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CC				=	c++
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
-SRCS			=	main.cpp		\
-					Character.cpp	\
+SRCS			=	main.cpp			\
+					Character.cpp		\
+					AMateria.cpp		\
+					Cure.cpp			\
+					Ice.cpp				\
+					MateriaSource.cpp	\
 
 OBJS			=	$(SRCS:.cpp=.o)
 PREFIXED		=	$(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -44,6 +48,6 @@ fclean:	clean
 re:		fclean all
 
 valgrind : clean all 
-	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME) test
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
 
 .PHONY: all clean fclean re valgrind

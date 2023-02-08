@@ -39,5 +39,6 @@ std::string const &AMateria::getType() const
 // ===== Methods =====
 void AMateria::use(ICharacter& target)
 {
-
+	std::cout << "* " << this->_type << " used to " << target.getName() << " *" << std::endl;
+	return ;
 }
