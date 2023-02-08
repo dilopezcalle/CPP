@@ -73,6 +73,7 @@
         "locale": "cpp",
         "mutex": "cpp",
         "optional": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "queue": "cpp"
     }
 }
