@@ -6,6 +6,7 @@
 // ===== Constructors =====
 MateriaSource::MateriaSource()
 {
+	std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_arrMateria[i] = NULL;
 	return ;
@@ -13,6 +14,7 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &src)
 {
+	std::cout << "MateriaSource copy constructor called" << std::endl;
 	*this = src;
 	return ;
 }
@@ -20,6 +22,9 @@ MateriaSource::MateriaSource(const MateriaSource &src)
 // ===== Destructor =====
 MateriaSource::~MateriaSource()
 {
+	std::cout << "MateriaSource destructor called" << std::endl;
+	for (int i = 0; i < 4 && this->_arrMateria[i]; i++)
+		delete this->_arrMateria[i];
 	return ;
 }
 
@@ -62,6 +67,7 @@ void	MateriaSource::learnMateria(AMateria *materia)
 		return ;
 
 	this->_arrMateria[i] = materia;
+	std::cout << "MateriaSource learns " << materia->getType() << std::endl;
 	return ;
 }
 
@@ -69,7 +75,10 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 {
 	for (int i = 0; i < 3 && this->_arrMateria[i]; i++)
 		if (this->_arrMateria[i] && type.compare(this->_arrMateria[i]->getType()) == 0)
+		{
+			std::cout << "MateriaSource creates " << this->_arrMateria[i]->getType() << std::endl;
 			return (this->_arrMateria[i]->clone());
+		}
 
 	return (0);
 }

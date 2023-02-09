@@ -3,6 +3,7 @@
 // ===== Constructors =====
 Character::Character() : _name("NULL")
 {
+	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_slot[i] = NULL;
 	return ;
@@ -10,18 +11,21 @@ Character::Character() : _name("NULL")
 Character::Character(const Character &src)
 {
 	*this = src;
+	std::cout << "Character copy constructor called" << std::endl;
 	return ;
 }
 Character::Character(std::string name) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
 		this->_slot[i] = NULL;
+	std::cout << "Character " << this->_name << " constructor called" << std::endl;
 	return ;
 }
 
 // ===== Destructor =====
 Character::~Character()
 {
+	std::cout << "Character " << this->_name << " destructor called" << std::endl;
 	for (int i = 0; i < 4 && this->_slot[i]; i++)
 		delete this->_slot[i];
 	return ;
@@ -94,12 +98,4 @@ void Character::use(int idx, ICharacter& target)
 	this->_slot[idx]->use(target);
 	delete this->_slot[idx];
 	this->_slot[idx] = NULL;
-}
-
-int	Character::test(void)
-{
-	if (!this->_slot[0])
-		std::cout << "hola" << std::endl;
-
-	return (0);
 }

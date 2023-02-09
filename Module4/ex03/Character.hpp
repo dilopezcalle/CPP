@@ -25,7 +25,6 @@ public:
 	virtual void equip(AMateria* m);
 	virtual void unequip(int idx);
 	virtual void use(int idx, ICharacter& target);
-	int	test(void);
 
 private:
 	std::string	_name;
