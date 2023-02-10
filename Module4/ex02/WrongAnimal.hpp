@@ -11,7 +11,7 @@ public:
 	WrongAnimal(const WrongAnimal &src);
 
 	// ===== Destructor =====
-	~WrongAnimal();
+	virtual ~WrongAnimal();
 
 	// ===== Operators =====
 	WrongAnimal	&operator=(const WrongAnimal &src);
