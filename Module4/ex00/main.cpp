@@ -61,10 +61,16 @@ int	main(void)
 	std::cout << GREEN << "Animal: " << RESET;
 	wrong_animal->makeSound();
 
+	// Create cat as cat
+	std::cout << YELLOW << "\nSe crea un gato erróneo como gato y no como animal" << RESET << std::endl;
+	const WrongCat* cat_cat = new WrongCat();
+	cat_cat->makeSound();
+
 	// Free wrong animals
 	std::cout << YELLOW << "\nSe liberan los animales erróneos" << RESET << std::endl;
 	delete wrong_animal;
 	delete wrong_cat;
+	delete cat_cat;
 
 	return (0);
 }
