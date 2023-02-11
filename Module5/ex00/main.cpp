@@ -7,6 +7,7 @@
 
 int	main(void)
 {
+	// ===== Without exceptions test =====
 	try
 	{
 		// Create a bureaucrat
@@ -26,14 +27,45 @@ int	main(void)
 
 		std::cout << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
+	catch (Bureaucrat::GradeTooHighException &e) { std::cerr << e.what() << std::endl; }
+	catch (Bureaucrat::GradeTooLowException &e) { std::cerr << e.what() << std::endl; }
+
+	std::cout << RED << "\n===== Test de excepciones =====" << RESET << std::endl;
+
+	// ===== Grade too high exception =====
+	try
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << YELLOW << "\nSe crea un burócrata con grado 0" << RESET << std::endl;
+		Bureaucrat bureaucrat("Diego", 0);
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (Bureaucrat::GradeTooHighException &e) { std::cerr << e.what() << std::endl; }
+	catch (Bureaucrat::GradeTooLowException &e) { std::cerr << e.what() << std::endl; }
+	try
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << YELLOW << "\nSe crea un burócrata con grado 1" << RESET << std::endl;
+		Bureaucrat bureaucrat("Diego", 1);
+		bureaucrat.incrementRange();
 	}
+	catch (Bureaucrat::GradeTooHighException &e) { std::cerr << e.what() << std::endl; }
+	catch (Bureaucrat::GradeTooLowException &e) { std::cerr << e.what() << std::endl; }
+
+	// ===== Grade too low exception =====
+	try
+	{
+		std::cout << YELLOW << "\nSe crea un burócrata con grado 151" << RESET << std::endl;
+		Bureaucrat bureaucrat("Diego", 151);
+	}
+	catch (Bureaucrat::GradeTooHighException &e) { std::cerr << e.what() << std::endl; }
+	catch (Bureaucrat::GradeTooLowException &e) { std::cerr << e.what() << std::endl; }
+
+	try
+	{
+		std::cout << YELLOW << "\nSe crea un burócrata con grado 150" << RESET << std::endl;
+		Bureaucrat bureaucrat("Diego", 150);
+		bureaucrat.decrementRange();
+	}
+	catch (Bureaucrat::GradeTooHighException &e) { std::cerr << e.what() << std::endl; }
+	catch (Bureaucrat::GradeTooLowException &e) { std::cerr << e.what() << std::endl; }
 
 	return (0);
 }
