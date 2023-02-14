@@ -81,7 +81,7 @@ int	main(void)
 	if (me)
 		delete me;
 	if (other)
-		delete other;	
+		delete other;
 
 	return (0);
 }
