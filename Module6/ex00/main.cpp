@@ -16,6 +16,6 @@ int	main(int argc, char **argv)
 	toChar(argv[1], len);
 	toInt(argv[1], len);
 	toFloat(argv[1], len);
-	toDouble(argv[1], len);
+	// toDouble(argv[1], len);
 	return (0);
 }

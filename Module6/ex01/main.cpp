@@ -6,13 +6,13 @@
 #include <iostream> 
 #include "data.hpp"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	// Create a data struct
 	std::cout << YELLOW << "\nSe crea una estructura" << RESET << std::endl;
 	Data		ptr;
 	ptr.name = "book";
-	ptr.size = 43;
+	ptr.size = 42;
 	std::cout << "Nombre: " << ptr.name << "\nTamaño: " << ptr.size << std::endl;
 
 	// Serialize data struct

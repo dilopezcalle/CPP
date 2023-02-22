@@ -1,9 +1,9 @@
-NAME			=	a.out
+NAME			=	cast
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	c++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 SRCS			=	main.cpp	\
 					cast.cpp	\

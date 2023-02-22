@@ -22,7 +22,6 @@ int	main(void)
 	<< RESET << std::endl;
 	Base *p = NULL;
 	identify(p);
-	identify(*p);
 
 	std::cout << YELLOW
 	<< "\nSe iguala la Base aleatoriamente a A, B o C y se identifica"
@@ -70,6 +69,7 @@ void	identify(Base *p)
 void	identify(Base &p)
 {
 	std::cout << "Identidad con referencia:\t";
+
 	try
 	{
 		A	&a = dynamic_cast<A &>(p);

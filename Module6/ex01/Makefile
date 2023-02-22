@@ -1,9 +1,9 @@
-NAME			=	a.out
+NAME			=	serialize
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	c++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 SRCS			=	main.cpp	\
 					data.cpp	\
@@ -44,6 +44,6 @@ fclean:	clean
 re:		fclean all
 
 valgrind : clean all 
-	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME) 42
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
 
 .PHONY: all clean fclean re valgrind
