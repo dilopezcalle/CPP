@@ -25,4 +25,3 @@ int main( void )
 	::iter(string_array, 3, function);
 	return (0);
 }
-

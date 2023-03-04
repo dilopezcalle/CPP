@@ -3,7 +3,7 @@ OBJ_DIR 		=	obj
 
 RM				=	rm -rf
 CC				=	clang++
-CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow
 
 SRCS			=	main.cpp	\
 
