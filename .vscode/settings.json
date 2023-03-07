@@ -75,6 +75,8 @@
         "optional": "cpp",
         "stack": "cpp",
         "queue": "cpp",
-        "bureaucrat.hpp": "c"
+        "bureaucrat.hpp": "c",
+        "list": "cpp",
+        "span": "cpp"
     }
 }
