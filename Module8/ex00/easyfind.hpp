@@ -10,8 +10,8 @@ typename T::iterator	easyfind(T container, int index)
 	typename T::iterator	it = std::find(container.begin(), container.end(), index);
 	if (it == container.end())
 		throw std::exception();
-	std::cout << "El número " << index << " está en la posición "
-	<< *it << std::endl;
+	// std::cout << "El número " << index << " está en la posición "
+	// << *it << std::endl;
 	return (it);
 };
 

@@ -1,4 +1,4 @@
-NAME			=	a.out
+NAME			=	iter
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf

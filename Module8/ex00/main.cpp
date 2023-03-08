@@ -12,7 +12,12 @@
 int main( void )
 {
 	{
-		std::vector<int> vec{1, 2, 3, 4, 5};
+		std::vector<int> vec;
+		vec.push_back(1);
+		vec.push_back(2);
+		vec.push_back(3);
+		vec.push_back(4);
+		vec.push_back(5);
 
 		std::vector<int>::iterator	begin = vec.begin();
 		std::cout << GREEN << "\nVECTOR:" << RESET << std::endl;
@@ -26,6 +31,7 @@ int main( void )
 		try
 		{
 			std::vector<int>::iterator	it = easyfind(vec, 2);
+			std::cout << "Se encontró el número " << *it << std::endl;
 		}
 		catch(std::exception &e)
 		{
@@ -36,6 +42,7 @@ int main( void )
 		try
 		{
 			std::vector<int>::iterator	it = easyfind(vec, -4);
+			std::cout << "Se encontró el número " << *it << std::endl;
 		}
 		catch(std::exception &e)
 		{
@@ -44,7 +51,12 @@ int main( void )
 	}
 
 	{
-		std::list<int>	list = {1, 2, 3, 4, 5};
+		std::list<int>	list;
+		list.push_back(1);
+		list.push_back(2);
+		list.push_back(42);
+		list.push_back(4);
+		list.push_back(5);
 		std::list<int>::iterator	begin = list.begin();
 		std::cout << GREEN << "\nLISTA:" << RESET << std::endl;
 		while (begin != list.end())
@@ -53,10 +65,11 @@ int main( void )
 			begin++;
 		}
 		std::cout << std::endl;
-		std::cout << YELLOW << "\nPrueba con elemento de la lista (2)" << RESET << std::endl;
+		std::cout << YELLOW << "\nPrueba con elemento de la lista (3)" << RESET << std::endl;
 		try
 		{
-			std::list<int>::iterator	it = easyfind(list, 2);
+			std::list<int>::iterator	it = easyfind(list, 42);
+			std::cout << "Se encontró el número " << *it << std::endl;
 		}
 		catch(std::exception &e)
 		{
@@ -67,6 +80,7 @@ int main( void )
 		try
 		{
 			std::list<int>::iterator	it = easyfind(list, -4);
+			std::cout << "Se encontró el número " << *it << std::endl;
 		}
 		catch(std::exception &e)
 		{

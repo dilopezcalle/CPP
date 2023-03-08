@@ -1,4 +1,4 @@
-NAME			=	a.out
+NAME			=	array
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
