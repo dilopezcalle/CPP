@@ -77,6 +77,8 @@
         "queue": "cpp",
         "bureaucrat.hpp": "c",
         "list": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "__tree": "cpp",
+        "map": "cpp"
     }
 }

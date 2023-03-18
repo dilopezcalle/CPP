@@ -13,17 +13,15 @@ int main(int ac, char *av[])
 {
 	if (ac != 2)
 	{
-		std::cout << RESET << " ===== Argumentos inválidos =====" << RESET << "\n";
+		std::cout << RED << "\n===== Argumentos inválidos =====" << RESET << "\n\n";
 		return (0);
 	}
 	(void)av;
-	try
-	{
-		BitcoinExchange	btc;
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	BitcoinExchange	btc;
+	if (btc.getNumDates() == 0)
+		std::cout << RED << "\n===== Problemas al leer la base de datos =====" << RESET << "\n\n";
+	if (btc.printExchangeRate(av[1]))
+		std::cout << RED << "\n===== El archivo \"" << av[1]
+		<< "\" no existe o tiene formato inválido =====" << RESET << "\n\n";
 	return (0);
 }

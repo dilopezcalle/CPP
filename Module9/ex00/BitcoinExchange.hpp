@@ -10,8 +10,12 @@ class BitcoinExchange
 private:
 	// ===== Attributes =====
 	std::map<std::string, double>	_dataBase;
+	unsigned int					_numDates;
 
 	// ===== Private methods =====
+	std::string	subtractDay(std::string date);
+	bool		checkDateFormat(std::string date);
+
 	BitcoinExchange(const BitcoinExchange &src);
 	BitcoinExchange	&operator=(const BitcoinExchange &src);
 
@@ -21,6 +25,12 @@ public:
 
 	// ===== Destructor =====
 	~BitcoinExchange();
+
+	// ===== Getters =====
+	unsigned int	getNumDates(void);
+
+	// ===== Methods =====
+	int	printExchangeRate(char *name_file);
 
 };
 
