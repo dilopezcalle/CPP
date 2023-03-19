@@ -4,8 +4,6 @@
 #define RESET "\033[0;0m"
 
 #include <iostream>
-#include <ctime>
-#include <map>
 
 #include "BitcoinExchange.hpp"
 

@@ -61,11 +61,14 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 	{
 		if (!this->checkLineFormat(line))
 			continue ;
+
 		date = line.substr(0, line.find(" | "));
 		value = std::atof(line.substr(line.find(" | ") + 3, line.length()).c_str());
 		new_date = date;
+
 		while (this->_dataBase.find(new_date) == this->_dataBase.end())
 			new_date = this->subtractDay(new_date);
+
 		std::cout << date << " => " << value << " = "
 		<< this->_dataBase[new_date] * value << "\n";
 	}
