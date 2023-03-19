@@ -15,6 +15,7 @@ private:
 	// ===== Private methods =====
 	std::string	subtractDay(std::string date);
 	bool		checkDateFormat(std::string date);
+	bool		checkLineFormat(std::string line);
 
 	BitcoinExchange(const BitcoinExchange &src);
 	BitcoinExchange	&operator=(const BitcoinExchange &src);

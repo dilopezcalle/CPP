@@ -1,8 +1,10 @@
 #include "BitcoinExchange.hpp"
 
+#include <cstdlib>
 #include <ctime>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 // ===== Constructor =====
 BitcoinExchange::BitcoinExchange() : _numDates(0)
@@ -17,9 +19,10 @@ BitcoinExchange::BitcoinExchange() : _numDates(0)
 	while (std::getline(file, line))
 	{
 		this->_dataBase.insert(std::pair<std::string, double>
-		(line.substr(0, 10), std::stof(line.substr(line.find(",") + 1))));
+		(line.substr(0, 10), std::atof(line.substr(line.find(",") + 1).c_str())));
 		this->_numDates++;
 	}
+
 	return ;
 }
 
@@ -41,7 +44,8 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 	std::ifstream	file(name_file);
 	std::string		line;
 	std::string		date;
-	std::string		value;
+	std::string		new_date;
+	double			value;
 
 	if (!file)
 		return (1);
@@ -55,21 +59,15 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 
 	while (std::getline(file, line))
 	{
-		if (line.find(" | ") > line.length())
-			std::cout << "Error: Separador incorrecto" << "\n";
-		else
-		{
-			date = line.substr(0, line.find(" | "));
-			value = line.substr(line.find(" | ") + 3, line.length());
-
-			std::cout << "fecha: " << date << "\nvalor: " << value << "\n";
-			if (!this->checkDateFormat(date))
-				std::cout << "Error: Formato de fecha inválido" << "\n";
-			else
-			{
-				
-			}
-		}
+		if (!this->checkLineFormat(line))
+			continue ;
+		date = line.substr(0, line.find(" | "));
+		value = std::atof(line.substr(line.find(" | ") + 3, line.length()).c_str());
+		new_date = date;
+		while (this->_dataBase.find(new_date) == this->_dataBase.end())
+			new_date = this->subtractDay(new_date);
+		std::cout << date << " => " << value << " = "
+		<< this->_dataBase[new_date] * value << "\n";
 	}
 	return (0);
 }
@@ -77,28 +75,70 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 // ===== Private functions =====
 std::string	BitcoinExchange::subtractDay(std::string date)
 {
-	struct tm date_tm;
-	std::stringstream ss(date);
+	std::tm timeinfo = {};
+	strptime(date.c_str(), "%Y-%m-%d", &timeinfo);
 
-	ss >> std::get_time(&date_tm, "%Y-%m-%d");
-	date_tm.tm_mday--;
-	mktime(&date_tm);
+	timeinfo.tm_mday--;
+	std::mktime(&timeinfo);
 
-	char buffer[80];
-	strftime(buffer, sizeof(buffer), "%Y-%m-%d", &date_tm);
+	char buffer[11];
+	std::strftime(buffer, 11, "%Y-%m-%d", &timeinfo);
+	return (std::string(buffer));
+}
 
-	std::string new_date(buffer);
-	return (new_date);
+bool		BitcoinExchange::checkLineFormat(std::string line)
+{
+	std::string		date;
+	std::string		value;
+
+	if (line.find(" | ") > line.length())
+	{
+		std::cout << "Error: Separador incorrecto" << "\n";
+		return (false);
+	}
+
+	date = line.substr(0, line.find(" | "));
+	value = line.substr(line.find(" | ") + 3, line.length());
+
+	if (!this->checkDateFormat(date))
+	{
+		std::cout << "Error: Formato o fecha inválida" << "\n";
+		return (false);
+	}
+
+	double	num = std::atof(value.c_str());
+	if (std::atoi(value.c_str()) == 0 && (value.length() > 1 || value.c_str()[0] != '0'))
+	{
+		std::cout << "Error: El valor no es un número válido" << "\n";
+		return (false);
+	}
+	if ((num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max()) ||
+		(num < 0 || num > 1000))
+	{
+		std::cout << "Error: El valor no está entre 0 y 1000" << "\n";
+		return (false);
+	}
+
+	return (true);
 }
 
 bool		BitcoinExchange::checkDateFormat(std::string date)
 {
-	struct tm date_tm;
+	int year, month, day;
 
-	std::stringstream ss(date);
-	ss >> std::get_time(&date_tm, "%Y-%m-%d");
-
-	if (ss.eof() && mktime(&date_tm) != -1)
-		return (true);
-	return (false);
+	if (date < this->_dataBase.begin()->first)
+		return (false);
+	if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
+		return (false);
+	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
+		return (false);
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		return (false);
+	if (month == 2)
+	{
+		bool isLeapYear = ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+		if (day > 29 || (day == 29 && !isLeapYear))
+			return (false);
+	}
+	return (true);
 }
