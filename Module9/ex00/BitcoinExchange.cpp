@@ -90,7 +90,7 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 		}
 
 		if ((i == 0 && this->_dataBase.find(new_bottom_date) != this->_dataBase.end()) || (i < j && i > 0))
-			std::cout << date << " =>= " << value << " = "
+			std::cout << date << " => " << value << " = "
 			<< this->_dataBase[new_bottom_date] * value << "\n";
 		else
 			std::cout << date << " => " << value << " = "
@@ -166,8 +166,6 @@ bool		BitcoinExchange::checkDateFormat(std::string date)
 {
 	int year, month, day;
 
-	// if (date < this->_dataBase.begin()->first)
-	// 	return (false);
 	if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
 		return (false);
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)

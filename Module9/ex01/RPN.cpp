@@ -4,6 +4,8 @@
 #include <cstring>
 #include <stack>
 
+bool	checkNumTypes(char *expression);
+
 void	reversePolishNotation(char *expression)
 {
 	std::stack<int>	operand;
@@ -11,7 +13,9 @@ void	reversePolishNotation(char *expression)
 	int				a;
 	int				b;
 	int				result;
-	bool			success = true;
+	bool			success;
+
+	success = checkNumTypes(expression);
 
 	for(int i = 0; expression[i] && success == true; i++)
 	{
@@ -60,4 +64,23 @@ void	reversePolishNotation(char *expression)
 		std::cout << operand.top() << "\n";
 	else
 		std::cout << "Error\n";
+}
+
+bool	checkNumTypes(char *expression)
+{
+	int		num_operator = 0;
+	int		num_operand = 0;
+	char	c;
+
+	for (int i = 0; expression[i]; i++)
+	{
+		c = expression[i];
+		if (c == '+' || c == '-' || c == '*' || c == '/')
+			num_operator++;
+		if (std::isdigit(c))
+			num_operand++;
+	}
+	if (num_operand != num_operator + 1 && num_operand != 1)
+		return (false);
+	return (true);
 }
