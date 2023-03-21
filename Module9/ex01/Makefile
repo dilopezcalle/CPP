@@ -2,7 +2,7 @@ NAME			=	RPN
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
-CC				=	clang++
+CC				=	c++
 CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow
 
 SRCS			=	main.cpp	\
@@ -44,6 +44,6 @@ fclean:	clean
 re:		fclean all
 
 valgrind : clean all 
-	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
 .PHONY: all clean fclean re valgrind

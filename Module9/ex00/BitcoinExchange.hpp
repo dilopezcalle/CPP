@@ -14,6 +14,7 @@ private:
 
 	// ===== Private methods =====
 	std::string	subtractDay(std::string date);
+	std::string	additionDay(std::string date);
 	bool		checkDateFormat(std::string date);
 	bool		checkLineFormat(std::string line);
 

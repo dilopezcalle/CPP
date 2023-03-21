@@ -29,6 +29,7 @@ BitcoinExchange::BitcoinExchange() : _numDates(0)
 // ===== Destructor =====
 BitcoinExchange::~BitcoinExchange()
 {
+	this->_dataBase.clear();
 	return ;
 }
 
@@ -42,10 +43,13 @@ unsigned int	BitcoinExchange::getNumDates(void)
 int	BitcoinExchange::printExchangeRate(char *name_file)
 {
 	std::ifstream	file(name_file);
+	std::string		new_bottom_date;
+	std::string		new_top_date;
 	std::string		line;
 	std::string		date;
-	std::string		new_date;
 	double			value;
+	int				i = 0;
+	int				j = 0;
 
 	if (!file)
 		return (1);
@@ -64,13 +68,33 @@ int	BitcoinExchange::printExchangeRate(char *name_file)
 
 		date = line.substr(0, line.find(" | "));
 		value = std::atof(line.substr(line.find(" | ") + 3, line.length()).c_str());
-		new_date = date;
+		new_bottom_date = date;
+		new_top_date = date;
 
-		while (this->_dataBase.find(new_date) == this->_dataBase.end())
-			new_date = this->subtractDay(new_date);
+		// Check previous date
+		while (	new_bottom_date >= this->_dataBase.begin()->first
+				&& this->_dataBase.find(new_bottom_date) == this->_dataBase.end())
+		{
+			new_bottom_date = this->subtractDay(new_bottom_date);
+			i++;
+		}
+		
+		// Check later date
+		std::map<std::string, double>::iterator	end = this->_dataBase.end();
+		end--;
+		while (	new_top_date <= end->first
+				&& this->_dataBase.find(new_top_date) == this->_dataBase.end())
+		{
+			new_top_date = this->additionDay(new_top_date);
+			j++;
+		}
 
-		std::cout << date << " => " << value << " = "
-		<< this->_dataBase[new_date] * value << "\n";
+		if ((i == 0 && this->_dataBase.find(new_bottom_date) != this->_dataBase.end()) || (i < j && i > 0))
+			std::cout << date << " =>= " << value << " = "
+			<< this->_dataBase[new_bottom_date] * value << "\n";
+		else
+			std::cout << date << " => " << value << " = "
+			<< this->_dataBase[new_top_date] * value << "\n";
 	}
 	return (0);
 }
@@ -82,6 +106,19 @@ std::string	BitcoinExchange::subtractDay(std::string date)
 	strptime(date.c_str(), "%Y-%m-%d", &timeinfo);
 
 	timeinfo.tm_mday--;
+	std::mktime(&timeinfo);
+
+	char buffer[11];
+	std::strftime(buffer, 11, "%Y-%m-%d", &timeinfo);
+	return (std::string(buffer));
+}
+
+std::string	BitcoinExchange::additionDay(std::string date)
+{
+	std::tm timeinfo = {};
+	strptime(date.c_str(), "%Y-%m-%d", &timeinfo);
+
+	timeinfo.tm_mday++;
 	std::mktime(&timeinfo);
 
 	char buffer[11];
@@ -129,8 +166,8 @@ bool		BitcoinExchange::checkDateFormat(std::string date)
 {
 	int year, month, day;
 
-	if (date < this->_dataBase.begin()->first)
-		return (false);
+	// if (date < this->_dataBase.begin()->first)
+	// 	return (false);
 	if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
 		return (false);
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)

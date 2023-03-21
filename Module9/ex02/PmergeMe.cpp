@@ -50,7 +50,7 @@ void	mergeSort(char *av[])
 	}
 
 	std::cout << "Before:\t";
-	for (int i = 0; i < v.size(); i++)
+	for (int i = 0; i < (int)v.size(); i++)
 		std::cout << v[i] << " ";
 	std::cout << "\n";
 
@@ -63,7 +63,7 @@ void	mergeSort(char *av[])
 	gettimeofday(&lstEndTime, NULL);
 	
 	std::cout << "After:\t";
-	for (int i = 0; i < v.size(); i++)
+	for (int i = 0; i < (int)v.size(); i++)
 		std::cout << v[i] << " ";
 	std::cout << "\n";
 
@@ -181,6 +181,7 @@ void	listMerge (	std::list<int>& lst, std::list<int>::iterator start,
 	std::list<int>::iterator	j = middle;
 	std::list<int>::iterator	k = end;
 
+	(void)lst;
 	// Compare the two halves and order number by number
 	while (i != middle && j != k)
 	{

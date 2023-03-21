@@ -57,7 +57,7 @@ void	reversePolishNotation(char *expression)
 		}
 	}
 	if (success)
-		std::cout << "Result: " << operand.top() << "\n";
+		std::cout << operand.top() << "\n";
 	else
 		std::cout << "Error\n";
 }

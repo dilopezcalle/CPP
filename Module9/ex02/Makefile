@@ -2,8 +2,8 @@ NAME			=	PmergeMe
 OBJ_DIR 		=	obj
 
 RM				=	rm -rf
-CC				=	clang++
-CFLAGS			=	-g3 #-Wall -Werror -Wextra -std=c++98 -Wshadow
+CC				=	c++
+CFLAGS			=	-g3 -Wall -Werror -Wextra -std=c++98 -Wshadow
 
 SRCS			=	main.cpp			\
 					PmergeMe.cpp		\
@@ -44,6 +44,6 @@ fclean:	clean
 re:		fclean all
 
 valgrind : clean all 
-	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME)
+	valgrind --memcheck:leak-check=full --suppressions=./cout.supp ./$(NAME) 3 5 9 7 4
 
 .PHONY: all clean fclean re valgrind
